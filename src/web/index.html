@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edge Chaos Simulator</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <p class="eyebrow">Project 6</p>
+        <h1>Edge Chaos Simulator</h1>
+        <p class="intro">
+          장애 시나리오에서 어떤 폴백 정책이 더 안전한지 수치로 비교하는 실험 페이지입니다.
+          버튼 한 번으로 성공률, 지연시간, 비용, SLO 위반을 동시에 확인할 수 있습니다.
+        </p>
+      </header>
+
+      <section class="card guide">
+        <h2>빠른 사용법</h2>
+        <ol>
+          <li>장애 시나리오를 선택합니다.</li>
+          <li>요청 수와 사용자 지역을 설정합니다.</li>
+          <li><strong>시뮬레이션 실행</strong>을 누릅니다.</li>
+          <li>아래 표에서 정책별 점수를 비교합니다.</li>
+        </ol>
+        <p class="hint">
+          기본값은 실무 면접 데모에 맞춘 값입니다. 처음에는 그대로 실행 후, 요청 수를 늘려 차이를 확인해 보세요.
+        </p>
+      </section>
+
+      <section class="card controls">
+        <h2>실행 설정</h2>
+        <div class="grid">
+          <label>
+            장애 시나리오
+            <select id="scenario">
+              <option value="packet_loss">packet_loss (패킷 손실 급증)</option>
+              <option value="regional_outage">regional_outage (리전 장애)</option>
+              <option value="retry_storm">retry_storm (재시도 폭주)</option>
+            </select>
+          </label>
+          <label>
+            요청 수 (100~10000)
+            <input id="requests" type="number" min="100" max="10000" step="100" value="800" />
+          </label>
+          <label>
+            사용자 지역 코드
+            <input id="region" type="text" value="apne2" />
+          </label>
+        </div>
+        <div class="actions">
+          <button id="runButton" type="button">시뮬레이션 실행</button>
+          <span id="status">준비됨</span>
+        </div>
+      </section>
+
+      <section class="card results">
+        <h2>정책 비교 결과</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>정책</th>
+                <th>성공률</th>
+                <th>p95 지연</th>
+                <th>요청당 비용</th>
+                <th>SLO 위반</th>
+                <th>총점</th>
+              </tr>
+            </thead>
+            <tbody id="resultBody">
+              <tr>
+                <td colspan="6" class="empty">아직 실행되지 않았습니다.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card report">
+        <h2>자동 리포트 (Markdown)</h2>
+        <p class="hint">아래 내용은 면접/포트폴리오 문서에 바로 붙여서 설명할 수 있습니다.</p>
+        <pre id="reportText">실행 후 보고서가 생성됩니다.</pre>
+      </section>
+    </main>
+
+    <script type="module" src="/static/main.js"></script>
+  </body>
+</html>
