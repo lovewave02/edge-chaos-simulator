@@ -8,7 +8,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "vitest run",
-    "dev:example": "tsx examples/run-scenarios.ts"
+    "dev:example": "tsx examples/run-scenarios.ts",
+    "dev:server": "tsx src/server.ts"
   },
   "license": "MIT",
   "devDependencies": {
