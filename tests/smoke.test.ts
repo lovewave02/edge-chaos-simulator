@@ -1,4 +1,16 @@
-import { runScenario } from '../src/simulator';
+import { describe, expect, it } from 'vitest';
 
-const r = runScenario('packet_loss');
-if (r.status !== 'stub') throw new Error('simulator stub failed');
+import { runSimulation } from '../src/index.js';
+
+describe('smoke', () => {
+  it('runs without crash', () => {
+    const r = runSimulation({
+      scenario: 'packet_loss',
+      policy: 'cache_prefer',
+      primaryRegion: 'apne2',
+      requestCount: 50
+    });
+
+    expect(r.requestCount).toBe(50);
+  });
+});

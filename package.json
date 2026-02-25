@@ -1,0 +1,19 @@
+{
+  "name": "edge-chaos-simulator",
+  "version": "0.1.0",
+  "description": "Edge failure simulation and fallback policy scoring",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "dev:example": "tsx examples/run-scenarios.ts"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "vitest": "^2.1.9"
+  }
+}
